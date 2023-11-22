@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct SearchMovieView: View {
     @State private var isLoading: Bool = false
     var body: some View {
         VStack {
@@ -37,6 +37,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    SearchMovieView()
 }
 
