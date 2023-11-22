@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct SearchMovieView: View {
     @State private var isLoading: Bool = false
     @StateObject var viewModel = SearchMovieViewModel()
@@ -15,7 +16,11 @@ struct SearchMovieView: View {
         VStack {
             HStack {
                 
-                TextField("Search move...",text: .constant(""))
+                TextField("Search to see move...",text: .constant(""))
+                    .onSubmit{
+                        print("Searching...")
+                    }
+                    .submitLabel(.search)
                 Button{
                     
                 }label: {
@@ -31,15 +36,21 @@ struct SearchMovieView: View {
                 )
 
             ScrollView {
-                ForEach(0..<5) { _ in
-                    MovieCell()
+                if (viewModel.searchData?.results.count) ?? 0 >= 1 && viewModel.responseCode == 200{
+                    LazyVStack {
+                        ForEach(viewModel.searchData!.results, id: \.title) { data in
+                            MovieCell(imageURL: data.poster_path ?? "", title: data.title ?? "", overview: data.overview ?? "", rating: String(data.vote_average ?? 0.0), isLoading: false)
+                        }
+                    }
+                }else {
+                    MovieCell(imageURL: "", title: ReductedData.original_title, overview: ReductedData.overview, rating: ReductedData.vote_average, isLoading: true)
                 }
             }
-        }.redacted(reason: isLoading ? .placeholder : .invalidated)
-        .padding()
-        .onAppear{
-            viewModel.fetchData(url: "https://api.themoviedb.org/3/search/movie?api_key=38e61227f85671163c275f9bd95a8803&query=Harry+Potter")
         }
+            .padding(10)
+        .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
     }
 }
 

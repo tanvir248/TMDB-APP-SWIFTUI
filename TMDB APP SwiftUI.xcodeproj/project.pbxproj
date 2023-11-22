@@ -15,6 +15,7 @@
 		4BB9BAF72B0E8F6D00EF9795 /* SearchMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB9BAF62B0E8F6D00EF9795 /* SearchMovieViewModel.swift */; };
 		4BB9BAFA2B0E903E00EF9795 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB9BAF92B0E903E00EF9795 /* MovieCell.swift */; };
 		4BB9BAFD2B0E9A7F00EF9795 /* CacheLazyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB9BAFC2B0E9A7E00EF9795 /* CacheLazyImage.swift */; };
+		4BBCB7BC2B0EB1C30073A3BF /* ReductedDataProviderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCB7BB2B0EB1C30073A3BF /* ReductedDataProviderModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		4BB9BAF62B0E8F6D00EF9795 /* SearchMovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewModel.swift; sourceTree = "<group>"; };
 		4BB9BAF92B0E903E00EF9795 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		4BB9BAFC2B0E9A7E00EF9795 /* CacheLazyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheLazyImage.swift; sourceTree = "<group>"; };
+		4BBCB7BB2B0EB1C30073A3BF /* ReductedDataProviderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReductedDataProviderModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				4BB9BAF42B0E8F5F00EF9795 /* SearchMovieModel.swift */,
+				4BBCB7BB2B0EB1C30073A3BF /* ReductedDataProviderModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				4BB9BAFA2B0E903E00EF9795 /* MovieCell.swift in Sources */,
 				4BB9BAE22B0E7E8500EF9795 /* TMDB_APP_SwiftUIApp.swift in Sources */,
 				4BB9BAFD2B0E9A7F00EF9795 /* CacheLazyImage.swift in Sources */,
+				4BBCB7BC2B0EB1C30073A3BF /* ReductedDataProviderModel.swift in Sources */,
 				4BB9BAF72B0E8F6D00EF9795 /* SearchMovieViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

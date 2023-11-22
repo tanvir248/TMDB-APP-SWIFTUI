@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct MovieCell: View {
-    @StateObject var lazy = imageVC()
+    @StateObject var lazyImage = lazyImageAndCache()
+    var imageURL: String?
+    var title: String
+    var overview: String
+    var rating: String
+    var isLoading: Bool
     var body: some View {
         HStack(alignment: .top){
-            lazy.lazyImage(url: URL(string: "https://image.tmdb.org/t/p/w220_and_h330_face/hziiv14OpD73u9gAak4XDDfBKa2.jpg")!, placeholder: "image")
+            lazyImage.lazyImage(url: "https://image.tmdb.org/t/p/w220_and_h330_face\(imageURL ?? "")")
                 .resizable()
                     .frame(width: 100, height: 120)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 VStack(alignment: .leading){
-                    Text("Harry Potter")
+                    Text(title)
                         .fontWeight(.medium)
-                    Text("BBC docuemntary about Daniel Radcliffe and his role as the main character in Harry potter")
-                    Text("Rating: 7.8")
+                    Text(overview)
+                    Text("Rating: \(rating)")
                         .italic()
                 }
                 
@@ -30,9 +35,10 @@ struct MovieCell: View {
                         .stroke(.secondary, lineWidth: 1)
                 )
                 .padding(5)
+                .redacted(reason: isLoading ? .placeholder : .invalidated)
         }
 }
 
 #Preview {
-    MovieCell()
+    MovieCell(imageURL: "", title: "", overview: "", rating: "", isLoading: false)
 }

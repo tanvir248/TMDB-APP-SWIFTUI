@@ -13,26 +13,31 @@ class lazyImageAndCache: ObservableObject {
 
     @Published var image = Image("No-Image-Placeholder")
     
-    func lazyImage(url: URL, placeholder: String) -> Image {
+    func lazyImage(url: String) -> Image {
         
-        if let cachedImage = self.imageCache.object(forKey: url as AnyObject)
-        {
-            debugPrint("image loaded from cache for =\(url)")
-            DispatchQueue.main.async {
-                self.image = Image(uiImage: cachedImage)
-            }
-            return image
+        guard let url = URL(string: url) else {
+            print("Poster image url not found")
+            return Image("No-Image-Placeholder")
         }
         
-        DispatchQueue.global().async { [weak self] in
+//        if let cachedImage = self.imageCache.object(forKey: url as AnyObject)
+//        {
+//            print("image loaded from cache for =\(url)")
+//            DispatchQueue.main.async {
+//                self.image = Image(uiImage: cachedImage)
+//            }
+//            return image
+//        }
+        
+        DispatchQueue.global(qos: .background).async { [weak self] in
             
             if let imageData = try? Data(contentsOf: url)
             {
-                debugPrint("image downloaded from server...")
+                //debugPrint("image downloaded from server...")
                 if let findImage = UIImage(data: imageData)
                 {
                     DispatchQueue.main.async {
-                        self!.imageCache.setObject(findImage, forKey: url as AnyObject)
+                     //   self!.imageCache.setObject(findImage, forKey: url as AnyObject)
                         self!.image = Image(uiImage: findImage)
                     }
                 }
