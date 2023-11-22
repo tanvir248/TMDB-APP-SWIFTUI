@@ -21,10 +21,10 @@ struct MovieCell: View {
                     .frame(width: 100, height: 120)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 VStack(alignment: .leading){
-                    Text(title)
+                    Text("**Title:** \(title)")
                         .fontWeight(.medium)
-                    Text(overview)
-                    Text("Rating: \(rating)")
+                    Text("**Overview:** \(overview)")
+                    Text("**Rating:** \(rating)")
                         .italic()
                 }
                 

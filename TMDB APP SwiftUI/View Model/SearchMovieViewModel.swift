@@ -16,7 +16,6 @@ class SearchMovieViewModel: ObservableObject {
     @Published var responseCode: Int = 0
     @Published var isLoading: Bool = false
     func fetchData(url: String){
-    
         guard let url = URL(string: url) else {
                     print("URL Error")
                   return
@@ -50,9 +49,9 @@ class SearchMovieViewModel: ObservableObject {
                     self.isLoading = false
                 }
             }
-            print(self.responseCode)
+         //   print(self.responseCode)
 
-            print(searchResults)
+          //  print(searchResults)
         }.resume()
     }
    

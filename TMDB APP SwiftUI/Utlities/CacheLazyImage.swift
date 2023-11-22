@@ -19,7 +19,6 @@ class lazyImageAndCache: ObservableObject {
             print("Poster image url not found")
             return Image("No-Image-Placeholder")
         }
-        
 //        if let cachedImage = self.imageCache.object(forKey: url as AnyObject)
 //        {
 //            print("image loaded from cache for =\(url)")
@@ -38,7 +37,8 @@ class lazyImageAndCache: ObservableObject {
                 {
                     DispatchQueue.main.async {
                      //   self!.imageCache.setObject(findImage, forKey: url as AnyObject)
-                        self!.image = Image(uiImage: findImage)
+                        
+                        self?.image = Image(uiImage: findImage)
                     }
                 }
             }
