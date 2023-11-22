@@ -10,7 +10,7 @@ import SwiftUI
 struct MovieCell: View {
     var body: some View {
         HStack(alignment: .top){
-                Image(systemName: "doc.plaintext")
+            Image(uiImage: LazyImageView.shared.loadImage(fromURL: URL(string: "www,www,ww")!, placeHolderImage: "person.fill"))
                     .resizable()
                     .frame(width: 100, height: 120)
                     .clipShape(RoundedRectangle(cornerRadius: 10))

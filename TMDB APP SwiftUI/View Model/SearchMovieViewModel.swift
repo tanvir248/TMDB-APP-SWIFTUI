@@ -12,10 +12,10 @@ enum errorSearch: Error {
 }
 
 class SearchMovieViewModel: ObservableObject {
-    @Published var searchData: [Search] = []
+    @Published var searchData: Search!
     
     func fetchData(url: String){
-        guard let url = URL(string: "www.www.com") else {
+        guard let url = URL(string: url) else {
                     print("URL Error")
                   return
               }
@@ -30,6 +30,9 @@ class SearchMovieViewModel: ObservableObject {
             guard let searchResults = try? JSONDecoder().decode(Search.self, from: data) else {
                 print("Failed to Decode Data")
                 return
+            }
+            DispatchQueue.main.async {
+                self.searchData = searchResults
             }
             print(searchResults)
         }.resume()

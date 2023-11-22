@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SearchMovieView: View {
     @State private var isLoading: Bool = false
+    @StateObject var viewModel = SearchMovieViewModel()
+
     var body: some View {
         VStack {
             HStack {
@@ -33,6 +35,9 @@ struct SearchMovieView: View {
             }
         }.redacted(reason: isLoading ? .placeholder : .invalidated)
         .padding()
+        .onAppear{
+            viewModel.fetchData(url: "https://api.themoviedb.org/3/search/movie?api_key=38e61227f85671163c275f9bd95a8803&query=Harry+Potter")
+        }
     }
 }
 
