@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct MovieCell: View {
+    @StateObject var lazy = imageVC()
     var body: some View {
         HStack(alignment: .top){
-            Image(uiImage: LazyImageView.shared.loadImage(fromURL: URL(string: "www,www,ww")!, placeHolderImage: "person.fill"))
-                    .resizable()
+            lazy.lazyImage(url: URL(string: "https://image.tmdb.org/t/p/w220_and_h330_face/hziiv14OpD73u9gAak4XDDfBKa2.jpg")!, placeholder: "image")
+                .resizable()
                     .frame(width: 100, height: 120)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 VStack(alignment: .leading){

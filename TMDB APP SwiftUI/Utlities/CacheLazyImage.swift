@@ -6,39 +6,38 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
 
-class LazyImageView
-{
-    static let shared = LazyImageView()
+class lazyImageAndCache: ObservableObject {
     private let imageCache = NSCache<AnyObject, UIImage>()
 
-    func loadImage(fromURL imageURL: URL, placeHolderImage: String)
-    -> UIImage{
-        var imagePlaceHolder = UIImage(named: placeHolderImage)
-
-        if let cachedImage = self.imageCache.object(forKey: imageURL as AnyObject)
+    @Published var image = Image("No-Image-Placeholder")
+    
+    func lazyImage(url: URL, placeholder: String) -> Image {
+        
+        if let cachedImage = self.imageCache.object(forKey: url as AnyObject)
         {
-            debugPrint("image loaded from cache for =\(imageURL)")
-            imagePlaceHolder = cachedImage
-            return imagePlaceHolder!
+            debugPrint("image loaded from cache for =\(url)")
+            DispatchQueue.main.async {
+                self.image = Image(uiImage: cachedImage)
+            }
+            return image
         }
         
-        DispatchQueue.global().async {
-            [weak self] in
-
-            if let imageData = try? Data(contentsOf: imageURL)
+        DispatchQueue.global().async { [weak self] in
+            
+            if let imageData = try? Data(contentsOf: url)
             {
                 debugPrint("image downloaded from server...")
-                if let image = UIImage(data: imageData)
+                if let findImage = UIImage(data: imageData)
                 {
                     DispatchQueue.main.async {
-                        self!.imageCache.setObject(image, forKey: imageURL as AnyObject)
-                        imagePlaceHolder = image
+                        self!.imageCache.setObject(findImage, forKey: url as AnyObject)
+                        self!.image = Image(uiImage: findImage)
                     }
                 }
             }
         }
-        return UIImage()
+        return image
     }
 }

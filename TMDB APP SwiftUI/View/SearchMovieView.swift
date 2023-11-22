@@ -31,7 +31,9 @@ struct SearchMovieView: View {
                 )
 
             ScrollView {
-              Text("Scroll")
+                ForEach(0..<5) { _ in
+                    MovieCell()
+                }
             }
         }.redacted(reason: isLoading ? .placeholder : .invalidated)
         .padding()
